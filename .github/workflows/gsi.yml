@@ -5,6 +5,7 @@ on: push
 env:
   TYPE: build
   TZ: Asia/Manila
+
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -23,8 +24,11 @@ jobs:
          run: |
               sudo apt update && sudo apt upgrade
               sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev rsync flex bison ccache openjdk-8-jdk expect aria2
-              git config --global user.name "nnippon"
               git config --global user.email "adameyyad999@gmail.com"
+              git config --global user.name "nnippon"
+              git config --global color.ui true
+              git config --global credential.helper store
+              echo "https://nnippon:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
               git clone --recurse-submodules https://github.com/nnippon/gsitools
      
        - name: Setup Erfan Tools
