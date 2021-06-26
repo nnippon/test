@@ -29,13 +29,13 @@ jobs:
               git config --global color.ui true
               git config --global credential.helper store
               echo "https://nnippon:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
-              git clone --recurse-submodules https://github.com/nnippon/gsitools -b Pixel ErfanGSIs
+              git clone --recurse-submodules https://github.com/nnippon/gsitools ErfanGSIs
      
        - name: Setup Erfan Tools
          continue-on-error: true
          timeout-minutes: 10
          run: |
-              bash ErfanGSIs/setup.sh
+              bash ErfanGSIs/setup.sh && bash ErfanGSIs/update.sh
        - name: Generate config.prop
          continue-on-error: true
          timeout-minutes: 3
